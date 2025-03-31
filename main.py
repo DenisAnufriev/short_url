@@ -5,8 +5,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import crud
 import models
 import schemas
-from database import SessionLocal
-from database import engine
+from core.database import engine
+from core.database import get_db
 
 app = FastAPI(
     title="URL Short API",
@@ -30,14 +30,6 @@ async def startup():
     """Обработчик события запуска приложения."""
     await create_tables()
 
-
-async def get_db():
-    """Создаёт сессию базы данных для каждого запроса."""
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        await db.close()
 
 
 @app.post("/", response_model=schemas.URLResponse, status_code=201)

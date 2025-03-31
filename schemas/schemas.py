@@ -10,7 +10,6 @@ class URLBase(BaseModel):
 
 class URLCreate(URLBase):
     """Схема для создания нового URL"""
-
     pass
 
 
